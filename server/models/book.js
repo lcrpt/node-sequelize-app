@@ -1,6 +1,5 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Book = sequelize.define('Book', {
+export default (sequelize, DataTypes) => {
+  const Book = sequelize.define('Book', {
     name: DataTypes.STRING,
     isbn: DataTypes.INTEGER,
     publication_date: DataTypes.DATE,
@@ -8,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     author_id: DataTypes.INTEGER
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models) => {
         // associations can be defined here
       }
     }

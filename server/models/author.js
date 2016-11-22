@@ -6,9 +6,11 @@ export default (sequelize, DataTypes) => {
     underscored: true,
     classMethods: {
       associate: (models) => {
-
-      }
-    }
+        Author.hasMany(models.Book, {
+          onDelete: 'cascade',
+        });
+      },
+    },
   });
 
   return Author;
