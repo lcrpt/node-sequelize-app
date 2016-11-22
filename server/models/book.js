@@ -6,6 +6,7 @@ export default (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     author_id: DataTypes.INTEGER
   }, {
+    underscored: true,
     classMethods: {
       associate: (models) => {
         // associations can be defined here

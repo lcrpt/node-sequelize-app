@@ -1,5 +1,5 @@
-Author = require('../models/').Author;
-Book = require('../models').Book;
+const Author = require('../models/').Author;
+const Book = require('../models').Book;
 
 export default {
   index(req, res) {

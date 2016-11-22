@@ -1,10 +1,12 @@
-var models = require('./server/models/');
+import express from 'express';
+import authors from './server/controllers/authors';
 
-models.sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection successful');
-  })
-  .catch((error) => {
-    console.log("Error creating connection:", error);
-  });
+const app = express();
+
+app.get('/authors', authors.index);
+
+app.set('port', process.env.PORT || 3000);
+
+app.listen(app.get('port'), () => {
+  console.log('App listening on port', app.get('port'));
+});
