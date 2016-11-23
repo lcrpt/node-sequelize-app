@@ -4,8 +4,7 @@ angular.module('Bookmark.services')
       all() {
         const deferred = $q.defer();
 
-        $http
-          .get('/authors')
+        $http.get('/authors')
           .then((res) => {
             deferred.resolve(res.data);
           })
@@ -19,8 +18,7 @@ angular.module('Bookmark.services')
       new(author) {
         const deferred = $q.defer();
 
-        $http
-          .post('/authors', author)
+        $http.post('/authors', author)
           .then((res) => {
             deferred.resolve(res.data);
           })

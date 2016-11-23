@@ -1,12 +1,12 @@
 angular.module('Bookmark.controllers')
-  .controller('AuthorDialogCtrl', ['$rootscope', '$scope', '$mdDialog', 'Authors', 'Toast',
-  ($rootscope, $scope, $mdDialog, Authors, Toast) => {
+  .controller('AuthorDialogCtrl', ['$rootScope', '$scope', '$mdDialog', 'Authors', 'Toast',
+  ($rootScope, $scope, $mdDialog, Authors, Toast) => {
     $scope.saveAuthor = (author) => {
       Authors
         .new(author)
         .then((newAuthor) => {
           newAuthor.Books = [];
-          $rootscope.authors.push(newAuthor);
+          $rootScope.authors.push(newAuthor);
           Toast.show('Author successfully created', 'top right', 3000);
           $mdDialog.cancel();
         })
