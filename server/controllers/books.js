@@ -1,6 +1,6 @@
 const Book = require('../models/').Book;
 
-export default {
+module.exports = {
   index(req, res) {
     Book.findAll()
     .then((books) => {

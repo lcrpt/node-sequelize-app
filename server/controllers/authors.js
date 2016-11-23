@@ -1,7 +1,7 @@
 const Author = require('../models/').Author;
 const Book = require('../models').Book;
 
-export default {
+module.exports = {
   index(req, res) {
     Author.findAll({
       include: Book,

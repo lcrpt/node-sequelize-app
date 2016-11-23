@@ -8,6 +8,6 @@ angular.module('Bookmark.services')
           .position(position)
           .hideDelay(delay)
         );
-      };
+      },
     };
   }]);

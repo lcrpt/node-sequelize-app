@@ -1,7 +1,7 @@
-import authors from '../controllers/authors';
-import books from '../controllers/books';
+const authors = require('../controllers/authors');
+const books = require('../controllers/books');
 
-export default (router) => {
+module.exports = (router) => {
   router.get('/authors', authors.index);
   router.get('/authors/:id', authors.show);
   router.post('/authors', authors.create);

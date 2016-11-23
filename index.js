@@ -1,6 +1,6 @@
-import express from 'express';
-import routes from './server/routes/';
-import bodyParser from 'body-parser';
+const express = require('express');
+const routes = require('./server/routes/');
+const bodyParser = require('body-parser');
 
 const app = express();
 

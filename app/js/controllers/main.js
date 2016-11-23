@@ -11,9 +11,9 @@ angular.module('Bookmark.controllers')
         console.error('Authors.all()', err);
       });
 
-    $scope.selectAuthor = () => {
-      $mdSidenav('left').toggle();
-    };
+    $scope.selectAuthor = (author) => $rootScope.selectedAuthor = author;
+
+    $scope.toggleSidenav = () => $mdSidenav('left').toggle();
 
     $scope.newAuthorDialog = (ev) => {
       $mdDialog.show({
@@ -61,7 +61,9 @@ angular.module('Bookmark.controllers')
         .then(() => {
           Books.delete(book.id)
             .then(() => {
-              $scope.selectedAuthor.Books = $scope.selectedAuthor.Books.filter((index) => index.id !== book.id;
+              $scope.selectedAuthor.Books = $scope.selectedAuthor.Books.filter((index) => {
+                index.id !== book.id
+              });
               Toast.show(`${book.name} has been deleted`, 'top-right', 3000);
             })
             .catch((err) => {
