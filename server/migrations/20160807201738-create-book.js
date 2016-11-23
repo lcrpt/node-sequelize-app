@@ -1,6 +1,10 @@
-export default {
-  up: (queryInterface, Sequelize) => {
+'use strict';
+module.exports = {
+  up: function(queryInterface, Sequelize) {
+    //Define the Books table
     return queryInterface.createTable('Books', {
+
+      //Define the Books's fields properties
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,7 +36,8 @@ export default {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: function(queryInterface, Sequelize) {
+    //Define the dropTable command used while rolling back migrations
     return queryInterface.dropTable('Books');
   }
 };

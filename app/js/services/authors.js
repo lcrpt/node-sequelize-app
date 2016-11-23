@@ -1,32 +1,32 @@
 angular.module('Bookmark.services')
-  .factory('Authors', ['$http', '$q', ($http, $q) => {
+  .factory('Authors', ['$http', '$q', function ($http, $q) {
     return {
-      all() {
-        const deferred = $q.defer();
-
-        $http.get('/authors')
-          .then((res) => {
-            deferred.resolve(res.data);
+      //Fetch all authors
+      all: function() {
+        var deferred = $q.defer();
+        $http
+          .get('/authors')
+          .then(function (response) {
+            deferred.resolve(response.data);
           })
-          .catch((err) => {
-            deferred.reject(err);
+          .catch(function (error) {
+            deferred.reject(error);
           });
-
-        return deferred.promise;
+          return deferred.promise;
       },
 
-      new(author) {
-        const deferred = $q.defer();
-
-        $http.post('/authors', author)
-          .then((res) => {
-            deferred.resolve(res.data);
+      //add new author
+      new: function (author) {
+        var deferred = $q.defer();
+        $http
+          .post('/authors', author)
+          .then(function (response) {
+            deferred.resolve(response.data);
           })
-          .catch((err) => {
-            deferred.reject(err);
+          .catch(function (error) {
+            deferred.reject(error);
           });
-
         return deferred.promise;
-      },
+      }
     };
   }]);

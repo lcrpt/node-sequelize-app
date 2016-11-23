@@ -1,13 +1,13 @@
 angular.module('Bookmark.services')
-  .factory('Toast', ['$mdToast', ($mdToast) => {
+  .factory('Toast', ['$mdToast', function ($mdToast) {
     return {
-      show: (text, position, delay) => {
+      show: function (text, position, delay) {
         $mdToast.show(
           $mdToast.simple()
-          .textContent(text)
-          .position(position)
-          .hideDelay(delay)
-        );
-      },
+            .textContent(text)
+            .position(position)
+            .hideDelay(delay)
+          );
+      }
     };
   }]);

@@ -1,68 +1,73 @@
-const Author = require('../models/').Author;
-const Book = require('../models').Book;
+Author = require('../models/').Author;
+Book = require('../models/').Book;
 
-module.exports = {
+module.exports= {
+  //Get a list of all authors using model.findAll()
   index(req, res) {
     Author.findAll({
-      include: Book,
+      //Return all books that have a matching author_id for each Author
+      include: Book
     })
-    .then((authors) => {
-      res.status(200).json(authors);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+      .then(function (authors) {
+        res.status(200).json(authors);
+      })
+      .catch(function (error) {
+        res.status(500).json(error);
+      });
   },
 
+  //Get an author by the unique ID using model.findById()
   show(req, res) {
     Author.findById(req.params.id, {
-      include: Book,
+      //Return all books that have a matching author_id for the author
+      include: Book
     })
-    .then((author) => {
+    .then(function (author) {
       res.status(200).json(author);
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(function (error) {
+      res.status(500).json(error);
     });
   },
 
+  //Create a new author using model.create()
   create(req, res) {
-    Author.create(req.body, {
-      include: Book,
-    })
-    .then((newAuthor) => {
-      res.status(200).json(newAuthor);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+    Author.create(req.body)
+      .then(function (newAuthor) {
+        res.status(200).json(newAuthor);
+      })
+      .catch(function (error) {
+        res.status(500).json(error);
+      });
   },
 
+  //Edit an existing author details using model.update()
   update(req, res) {
     Author.update(req.body, {
       where: {
-        id: req.params.id,
-      },
+        id: req.params.id
+      }
     })
-    .then((updatedAuthor) => {
-      res.status(200).json(updatedAuthor);
+    .then(function (updatedRecords) {
+      res.status(200).json(updatedRecords);
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(function (error) {
+      res.status(500).json(error);
     });
   },
 
+  //Delete an existing author by the unique ID using model.destroy()
   delete(req, res) {
     Author.destroy({
       where: {
-        id: req.params.id,
-      },
+        id: req.params.id
+      }
     })
-    .then((deletedAuthor) => {
-      res.status(200).json(deletedAuthor);
+    .then(function (deletedRecords) {
+      res.status(200).json(deletedRecords);
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(function (error) {
+      res.status(500).json(error);
     });
-  },
+  }
 };

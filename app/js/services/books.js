@@ -1,46 +1,47 @@
 angular.module('Bookmark.services')
-  .factory('Books', ['$http', '$q', ($http, $q) => {
+  .factory('Books', ['$http', '$q', function ($http, $q) {
+
     return {
-      new(book) {
-        const deferred = $q.defer();
-
-        $http.post('/books', book)
-          .then((res) => {
-            deferred.resolve(res.data);
+      //Create a new book.
+      new: function (book) {
+        var deferred = $q.defer();
+        $http
+          .post('/books', book)
+          .then(function (response) {
+            deferred.resolve(response.data);
           })
-          .catch((err) => {
-            deffered.reject(err);
+          .catch(function (error) {
+            deferred.reject(error);
           });
-
         return deferred.promise;
       },
 
-      update(book) {
-        const deferred = $q.defer();
-
-        $http.put(`/books/${book.id}`, book)
-          .then((res) => {
-            deferred.resolve(res.data);
+      //Delete an existing book.
+      delete: function(bookId) {
+        var deffered = $q.defer();
+        $http
+          .delete('/books/' + bookId)
+          .then(function (response) {
+            deffered.resolve(response.data);
           })
-          .catch((err) => {
-            deffered.reject(err);
+          .catch(function (error) {
+            deffered.reject(error);
           });
-
-        return deferred.promise;
+        return deffered.promise;
       },
 
-      delete(bookId) {
-        const deferred = $q.defer();
-
-        $http.delete(`/books/${bookId}`)
-          .then((res) => {
-            deferred.resolve(res.data);
+      //Update an existing book.
+      update: function (book) {
+        var deferred = $q.defer();
+        $http
+          .put('/books/' + book.id, book)
+          .then(function (response) {
+            deferred.resolve(response.data);
           })
-          .catch((err) => {
-            deffered.reject(err);
+          .catch(function (error) {
+            deferred.reject(error);
           });
-
         return deferred.promise;
-      },
-    }
+      }
+    };
   }]);
